@@ -112,8 +112,8 @@ RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
 RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
   wxpython=3.0.2.0
 
-ENV PATH="/usr/bin/java:$PATH"
-RUN /miniconda/bin/pip install --upgrade pip
+
+RUN /miniconda/bin/pip install python-javabridge
 RUN /miniconda/bin/pip install cellh5
 RUN /miniconda/bin/pip install centrosome
 RUN /miniconda/bin/pip install inflect
