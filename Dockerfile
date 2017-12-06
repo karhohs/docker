@@ -57,7 +57,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install miniconda
 RUN curl -Lo miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" \
-  && ["/bin/bash", "-c", "miniconda.sh -b -p /miniconda"] \
+  && /bin/bash miniconda.sh -b -p /miniconda \
   && rm miniconda.sh
 ENV PATH="/miniconda/bin:$PATH"
 RUN conda update -y conda \
