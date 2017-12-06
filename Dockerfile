@@ -85,19 +85,19 @@ RUN conda install -y \
   scikit-learn \
   scipy
 
-RUN conda install -y -c https://anaconda.org/bjornfjohansson \
-  wxpython=3.0.2.0
-
-RUN conda install -y -c https://anaconda.org/bioconda \
+RUN conda install -y -c https://conda.anaconda.org/bioconda/linux-64 \
   java-jdk
 
-RUN conda install -y -c https://anaconda.org/conda-forge \
+RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
   appdirs \
   jupyter \
   mahotas \
   raven \
   sphinx \
   tifffile
+
+RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
+  wxpython=3.0.2.0
 
 RUN $HOME/miniconda/bin/pip install cellh5
 RUN $HOME/miniconda/bin/pip install centrosome
