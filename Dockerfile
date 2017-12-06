@@ -65,7 +65,7 @@ RUN apt-get update && apt-get install -y \
   libsm6 \
   libxext6 \
   libxml2-dev \
-  libxrender 1\
+  libxrender1\
   libxslt1-dev
 
 RUN curl -L "https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh" > miniconda.sh
