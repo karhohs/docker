@@ -54,7 +54,7 @@ FROM ubuntu:16.04
 # Install prerequisites
 RUN apt-get update && apt-get install -y curl && \
   curl -L "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" > miniconda.sh && \
-  /bin/bash miniconda.sh -b -p /miniconda && \
+  /bin/bash miniconda.sh -b -p /miniconda
   
 RUN rm miniconda.sh
 ENV PATH="/miniconda/bin:$PATH"
