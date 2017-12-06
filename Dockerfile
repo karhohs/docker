@@ -51,10 +51,23 @@
 #                                                          -0x00B1 [05/06/84]
 FROM ubuntu:16.04
 
-# Install prerequisites
+# Install prerequisites (adapted from https://hub.docker.com/r/continuumio/miniconda/~/dockerfile/)
 RUN apt-get update && apt-get install -y \
+  build-essential \
   bzip2 \
-  curl
+  ca-certificates \
+  curl \
+  default-jdk \
+  git \
+  libglib2.0-0 \
+  libhdf5-dev \
+  libmysqlclient-dev \
+  libsm6 \
+  libxext6 \
+  libxml2-dev \
+  libxrender 1\
+  libxslt1-dev
+
 RUN curl -L "https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh" > miniconda.sh
 
 RUN /bin/bash miniconda.sh -b -p /miniconda
