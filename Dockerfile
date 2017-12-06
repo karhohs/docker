@@ -56,12 +56,12 @@ RUN apt-get update && apt-get install -y \
   curl
 
 # Install miniconda
-RUN curl -Lo /home/ubuntu/miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
-RUN bash /home/ubuntu/miniconda.sh -b -p $HOME/miniconda
-RUN rm miniconda.sh
-ENV PATH="$HOME/miniconda/bin:$PATH"
-RUN conda update -y conda
-RUN conda config --set always_yes True
+RUN curl -Lo miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" \
+  && bash miniconda.sh -b -p /miniconda \
+  && rm miniconda.sh
+ENV PATH="/miniconda/bin:$PATH"
+RUN conda update -y conda \
+  && conda config --set always_yes True
 
 # Configure conda environment for CellProfiler
 RUN conda install -y \
