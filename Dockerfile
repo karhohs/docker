@@ -99,11 +99,11 @@ RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
 RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
   wxpython=3.0.2.0
 
-RUN $HOME/miniconda/bin/pip install cellh5
-RUN $HOME/miniconda/bin/pip install centrosome
-RUN $HOME/miniconda/bin/pip install inflect
-RUN $HOME/miniconda/bin/pip install prokaryote
-RUN $HOME/miniconda/bin/pip install python-bioformats
+RUN /miniconda/bin/pip install cellh5
+RUN /miniconda/bin/pip install centrosome
+RUN /miniconda/bin/pip install inflect
+RUN /miniconda/bin/pip install prokaryote
+RUN /miniconda/bin/pip install python-bioformats
 
 # Install CellProfiler
 WORKDIR /usr/local/src
@@ -111,7 +111,7 @@ RUN git clone https://github.com/CellProfiler/CellProfiler.git
 WORKDIR /usr/local/src/CellProfiler
 ARG VERSION=tags/v3.0.0
 RUN git checkout $VERSION
-RUN $HOME/miniconda/bin/pip install --editable .
+RUN /miniconda/bin/pip install --editable .
 
 # Fix init and zombie process reaping problems using s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
