@@ -47,7 +47,7 @@ test: input output output/gold data input/filelist.txt AS_09125_050116030001_D03
 	docker run \
 		--volume=`pwd`/input:/input \
 		--volume=`pwd`/output:/output \
-		cellprofiler:$(VERSION) \
+		karhohs/docker-cellprofiler:conda \
 		--image-directory=/input \
 		--output-directory=/output \
 		--pipeline=/input/ExampleHuman.cppipe \
