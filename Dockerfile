@@ -84,13 +84,13 @@ RUN conda install -y \
   requests \
   scikit-image \
   scikit-learn \
-  scipy \
+  scipy
 
 RUN conda install -y -c https://anaconda.org/BjornFJohansson \
   wxpython=3.0.2.0
 
 RUN conda install -y -c https://anaconda.org/bioconda \
-  java-jdk \
+  java-jdk
 
 RUN conda install -y -c https://anaconda.org/conda-forge \
   appdirs \
