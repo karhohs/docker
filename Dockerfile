@@ -51,35 +51,64 @@
 #                                                          -0x00B1 [05/06/84]
 FROM ubuntu:16.04
 
-# Install CellProfiler dependencies
-RUN   apt-get -y update &&                                          \
-      apt-get -y install                                            \
-        build-essential    \
-        cython             \
-        git                \
-        libmysqlclient-dev \
-        libhdf5-dev        \
-        libxml2-dev        \
-        libxslt1-dev       \
-        openjdk-8-jdk      \
-        python-dev         \
-        python-pip         \
-        python-h5py        \
-        python-matplotlib  \
-        python-mysqldb     \
-        python-scipy       \
-        python-numpy       \
-        python-wxgtk3.0    \
-        python-zmq
+# Install miniconda
+RUN curl -Lo /home/ubuntu/miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+RUN bash /home/ubuntu/miniconda.sh -b -p $HOME/miniconda
+RUN rm miniconda.sh
+ENV PATH="$HOME/miniconda/bin:$PATH"
+RUN conda update -y conda
+RUN conda config --set always_yes True
 
-WORKDIR /usr/local/src
+# Configure conda environment for CellProfiler
+RUN conda install -y \
+  cython \
+  h5py \
+  ipywidgets \
+  javabridge \
+  libtiff \
+  libxml2 \
+  libxslt \
+  lxml \
+  packaging \
+  pillow \
+  pip \
+  python=2 \
+  pyzmq \
+  matplotlib \
+  mysql-python \
+  numpy \
+  requests \
+  scikit-image \
+  scikit-learn \
+  scipy \
+
+RUN conda install -y -c https://anaconda.org/BjornFJohansson \
+  wxpython=3.0.2.0
+
+RUN conda install -y -c https://anaconda.org/bioconda \
+  java-jdk \
+
+RUN conda install -y -c https://anaconda.org/conda-forge \
+  appdirs \
+  jupyter \
+  mahotas \
+  raven \
+  sphinx \
+  tifffile
+
+RUN $HOME/miniconda/bin/pip install cellh5
+RUN $HOME/miniconda/bin/pip install centrosome
+RUN $HOME/miniconda/bin/pip install inflect
+RUN $HOME/miniconda/bin/pip install prokaryote
+RUN $HOME/miniconda/bin/pip install python-bioformats
 
 # Install CellProfiler
+WORKDIR /usr/local/src
 RUN git clone https://github.com/CellProfiler/CellProfiler.git
 WORKDIR /usr/local/src/CellProfiler
 ARG VERSION=tags/v3.0.0
 RUN git checkout $VERSION
-RUN pip install --editable .
+RUN $HOME/miniconda/bin/pip install --editable .
 
 # Fix init and zombie process reaping problems using s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
