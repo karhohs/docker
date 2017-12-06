@@ -112,13 +112,13 @@ RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
 RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
   wxpython=3.0.2.0
 
+ADD https://github.com/karhohs/conda-env-archetypes/blob/master/cellprofiler/ubuntu/environment.yml /tmp/
 
-RUN /miniconda/bin/pip install javabridge
+RUN /miniconda/bin/pip install javabridge python-bioformats
 RUN /miniconda/bin/pip install cellh5
 RUN /miniconda/bin/pip install centrosome
 RUN /miniconda/bin/pip install inflect
 RUN /miniconda/bin/pip install prokaryote
-RUN /miniconda/bin/pip install python-bioformats
 
 # Install CellProfiler
 WORKDIR /usr/local/src
