@@ -113,7 +113,7 @@ RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
   wxpython=3.0.2.0
 
 
-RUN /miniconda/bin/pip install python-javabridge
+RUN /miniconda/bin/pip install javabridge
 RUN /miniconda/bin/pip install cellh5
 RUN /miniconda/bin/pip install centrosome
 RUN /miniconda/bin/pip install inflect
