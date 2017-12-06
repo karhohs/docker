@@ -52,8 +52,10 @@
 FROM ubuntu:16.04
 
 # Install prerequisites
-RUN apt-get update && apt-get install -y curl && \
-  curl -L "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" > miniconda.sh
+RUN apt-get update && apt-get install -y \
+  bzip2 \
+  curl \
+RUN curl -L "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" > miniconda.sh
 
 RUN /bin/bash miniconda.sh -b -p /miniconda
 RUN rm miniconda.sh
