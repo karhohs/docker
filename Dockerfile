@@ -55,7 +55,7 @@ FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y \
   bzip2 \
   curl
-RUN curl -L "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" > miniconda.sh
+RUN curl -L "https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh" > miniconda.sh
 
 RUN /bin/bash miniconda.sh -b -p /miniconda
 RUN rm miniconda.sh
@@ -76,7 +76,6 @@ RUN conda install -y \
   packaging \
   pillow \
   pip \
-  python=2 \
   pyzmq \
   matplotlib \
   mysql-python \
@@ -86,7 +85,7 @@ RUN conda install -y \
   scikit-learn \
   scipy
 
-RUN conda install -y -c https://anaconda.org/BjornFJohansson \
+RUN conda install -y -c https://anaconda.org/bjornfjohansson \
   wxpython=3.0.2.0
 
 RUN conda install -y -c https://anaconda.org/bioconda \
