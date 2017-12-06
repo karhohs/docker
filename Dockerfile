@@ -51,6 +51,10 @@
 #                                                          -0x00B1 [05/06/84]
 FROM ubuntu:16.04
 
+# Install prerequisites
+RUN apt-get update && apt-get install -y \
+  curl
+
 # Install miniconda
 RUN curl -Lo /home/ubuntu/miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 RUN bash /home/ubuntu/miniconda.sh -b -p $HOME/miniconda
