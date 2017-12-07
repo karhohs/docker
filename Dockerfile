@@ -112,9 +112,9 @@ RUN conda update -y conda \
 # RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
 #   wxpython=3.0.2.0
 
-ADD https://raw.githubusercontent.com/karhohs/conda-env-archetypes/master/cellprofiler/ubuntu/environment.yml /tmp/
+ADD https://raw.githubusercontent.com/karhohs/conda-env-archetypes/master/cellprofiler/ubuntu_docker/environment.yml /tmp/
 RUN conda env create -f /tmp/environment.yml
-
+ENV PATH="/miniconda/envs/cellprofiler/bin:$PATH"
 # RUN /miniconda/bin/pip install javabridge python-bioformats
 # RUN /miniconda/bin/pip install cellh5
 # RUN /miniconda/bin/pip install centrosome
@@ -132,6 +132,8 @@ RUN conda env create -f /tmp/environment.yml
 # Fix init and zombie process reaping problems using s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
 RUN gunzip -c /tmp/s6-overlay-amd64.tar.gz | tar -xf - -C /
+
+
 
 ENTRYPOINT ["/init", "cellprofiler"]
 
