@@ -77,57 +77,57 @@ RUN conda update -y conda \
   && conda config --set always_yes True
 
 # Configure conda environment for CellProfiler
-RUN conda install -y \
-  cython \
-  h5py \
-  ipywidgets \
-  javabridge \
-  libtiff \
-  libxml2 \
-  libxslt \
-  lxml \
-  packaging \
-  pillow \
-  pip \
-  pyzmq \
-  matplotlib \
-  mysql-python \
-  numpy \
-  requests \
-  scikit-image \
-  scikit-learn \
-  scipy
+# RUN conda install -y \
+#   cython \
+#   h5py \
+#   ipywidgets \
+#   javabridge \
+#   libtiff \
+#   libxml2 \
+#   libxslt \
+#   lxml \
+#   packaging \
+#   pillow \
+#   pip \
+#   pyzmq \
+#   matplotlib \
+#   mysql-python \
+#   numpy \
+#   requests \
+#   scikit-image \
+#   scikit-learn \
+#   scipy
 
-RUN conda install -y -c https://conda.anaconda.org/bioconda/linux-64 \
-  java-jdk
+# RUN conda install -y -c https://conda.anaconda.org/bioconda/linux-64 \
+#   java-jdk
 
-RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
-  appdirs \
-  jupyter \
-  mahotas \
-  raven \
-  sphinx \
-  tifffile
+# RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
+#   appdirs \
+#   jupyter \
+#   mahotas \
+#   raven \
+#   sphinx \
+#   tifffile
 
-RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
-  wxpython=3.0.2.0
+# RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
+#   wxpython=3.0.2.0
 
 ADD https://raw.githubusercontent.com/karhohs/conda-env-archetypes/master/cellprofiler/ubuntu/environment.yml /tmp/
 RUN conda env create -f /tmp/environment.yml
 
-RUN /miniconda/bin/pip install javabridge python-bioformats
-RUN /miniconda/bin/pip install cellh5
-RUN /miniconda/bin/pip install centrosome
-RUN /miniconda/bin/pip install inflect
-RUN /miniconda/bin/pip install prokaryote
+# RUN /miniconda/bin/pip install javabridge python-bioformats
+# RUN /miniconda/bin/pip install cellh5
+# RUN /miniconda/bin/pip install centrosome
+# RUN /miniconda/bin/pip install inflect
+# RUN /miniconda/bin/pip install prokaryote
 
 # Install CellProfiler
-WORKDIR /usr/local/src
-RUN git clone https://github.com/CellProfiler/CellProfiler.git
-WORKDIR /usr/local/src/CellProfiler
-ARG VERSION=tags/v3.0.0
-RUN git checkout $VERSION
-RUN /miniconda/bin/pip install --editable .
+# WORKDIR /usr/local/src
+# RUN git clone https://github.com/CellProfiler/CellProfiler.git
+# WORKDIR /usr/local/src/CellProfiler
+# ARG VERSION=tags/v3.0.0
+# RUN git checkout $VERSION
+# RUN /miniconda/bin/pip install --editable .
 
 # Fix init and zombie process reaping problems using s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
