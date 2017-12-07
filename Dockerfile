@@ -112,7 +112,7 @@ RUN conda install -y -c https://conda.anaconda.org/conda-forge/linux-64 \
 RUN conda install -y -c https://conda.anaconda.org/bjornfjohansson/linux-64 \
   wxpython=3.0.2.0
 
-ADD https://github.com/karhohs/conda-env-archetypes/blob/master/cellprofiler/ubuntu/environment.yml /tmp/
+ADD https://raw.githubusercontent.com/karhohs/conda-env-archetypes/master/cellprofiler/ubuntu/environment.yml /tmp/
 RUN conda env create -f /tmp/environment.yml
 
 RUN /miniconda/bin/pip install javabridge python-bioformats
