@@ -58,6 +58,7 @@ RUN apt-get update && apt-get install -y \
   ca-certificates \
   curl \
   default-jdk \
+  gcc \
   git \
   libglib2.0-0 \
   libhdf5-dev \
