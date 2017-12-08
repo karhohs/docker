@@ -135,6 +135,6 @@ RUN gunzip -c /tmp/s6-overlay-amd64.tar.gz | tar -xf - -C /
 
 
 
-ENTRYPOINT ["/init", "cellprofiler"]
+ENTRYPOINT ["/init", "/miniconda/envs/cellprofiler/bin/cellprofiler"]
 
 CMD ["--run", "--run-headless", "--help"]
