@@ -53,6 +53,8 @@ FROM ubuntu:16.04
 
 # Install prerequisites (adapted from https://hub.docker.com/r/continuumio/miniconda/~/dockerfile/)
 RUN apt-get update && apt-get install -y \
+  apt-transport-https \
+  automake \
   build-essential \
   bzip2 \
   ca-certificates \
@@ -60,14 +62,23 @@ RUN apt-get update && apt-get install -y \
   default-jdk \
   gcc \
   git \
+  jq \
+  libcurl4-openssl-dev \
+  libfuse-dev \
   libglib2.0-0 \
   libhdf5-dev \
   libmysqlclient-dev \
   libsm6 \
+  libssl-dev \
+  libtool \
   libxext6 \
   libxml2-dev \
   libxrender1\
-  libxslt1-dev
+  libxslt1-dev \
+  mime-support \
+  pkg-config \
+  software-properties-common \
+  unzip
 
 RUN curl -L "https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh" > miniconda.sh
 
@@ -116,6 +127,7 @@ RUN conda update -y conda \
 ADD https://raw.githubusercontent.com/karhohs/conda-env-archetypes/master/cellprofiler/ubuntu_docker/environment.yml /tmp/
 RUN conda env create -f /tmp/environment.yml
 ENV PATH="/miniconda/envs/cellprofiler/bin:$PATH"
+
 # RUN /miniconda/bin/pip install javabridge python-bioformats
 # RUN /miniconda/bin/pip install cellh5
 # RUN /miniconda/bin/pip install centrosome
